@@ -70,3 +70,25 @@ class BackstagePassUpdater extends ItemUpdater {
         this.ensureQualityBounds(); // Ensure quality does not exceed bounds
     }
 }
+// Sulfuras updater (no changes in sell_in or quality)
+class SulfurasUpdater extends ItemUpdater {
+    updateQuality() {
+        // Sulfuras does not change its quality or sell_in, so nothing happens
+    }
+}
+
+// Conjured items degrade twice as fast as normal items
+class ConjuredItemUpdater extends ItemUpdater {
+    updateQuality() {
+        if (this.item.quality > 0) {
+            this.item.quality -= 2; // Conjured items degrade twice as fast
+        }
+        this.item.sell_in -= 1; // Decrease sell_in
+
+        if (this.item.sell_in < 0 && this.item.quality > 0) {
+            this.item.quality -= 2; // Degrade twice as fast after sell_in
+        }
+
+        this.ensureQualityBounds(); // Ensure quality does not go negative or exceed 50
+    }
+}
