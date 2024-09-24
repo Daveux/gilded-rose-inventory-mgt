@@ -107,3 +107,10 @@ function createItemUpdater(item) {
             return new ItemUpdater(item); // Normal items
     }
 }
+// Main function to update the quality of all items in the inventory
+function update_quality() {
+    items.forEach(item => {
+        const itemUpdater = createItemUpdater(item); // Get the correct item updater
+        itemUpdater.updateQuality(); // Call the updater's updateQuality method
+    });
+}
