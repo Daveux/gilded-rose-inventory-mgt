@@ -47,6 +47,16 @@ describe('Gilded Rose', function() {
         expect(item.sell_in).to.equal(0);      // Sell_in should not decrease
     });
 
+    // Test that Conjured items degrade twice as fast
+    it('should degrade quality of Conjured items twice as fast as normal items', function() {
+        const item = new Item('Conjured Mana Cake', 3, 6);
+        const updater = createItemUpdater(item);
+        updater.updateQuality();
+        expect(item.sell_in).to.equal(2);      // Sell_in should decrease by 1
+        expect(item.quality).to.equal(4);      // Quality should decrease by 2 (twice as fast)
+    });
+
+
 
 
 });
