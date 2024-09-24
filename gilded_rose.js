@@ -92,3 +92,18 @@ class ConjuredItemUpdater extends ItemUpdater {
         this.ensureQualityBounds(); // Ensure quality does not go negative or exceed 50
     }
 }
+// Factory function to determine the correct updater for each item
+function createItemUpdater(item) {
+    switch (item.name) {
+        case 'Aged Brie':
+            return new AgedBrieUpdater(item);
+        case 'Backstage passes to a TAFKAL80ETC concert':
+            return new BackstagePassUpdater(item);
+        case 'Sulfuras, Hand of Ragnaros':
+            return new SulfurasUpdater(item);
+        case item.name.startsWith('Conjured') && item.name:  // Handle all conjured items
+            return new ConjuredItemUpdater(item);
+        default:
+            return new ItemUpdater(item); // Normal items
+    }
+}
