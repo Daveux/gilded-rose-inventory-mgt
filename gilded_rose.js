@@ -39,3 +39,17 @@ class ItemUpdater {
         if (this.item.quality > 50) this.item.quality = 50;
     }
 }
+
+// AgedBrie updater (quality increases as it gets older)
+class AgedBrieUpdater extends ItemUpdater {
+    updateQuality() {
+        this.item.quality += 1; // Aged Brie increases in quality as it gets older
+        this.item.sell_in -= 1; // Decrease sell_in
+
+        if (this.item.sell_in < 0) {
+            this.item.quality += 1; // Increases twice as fast after sell_in
+        }
+
+        this.ensureQualityBounds(); // Ensure quality does not exceed bounds
+    }
+}
