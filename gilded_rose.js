@@ -53,3 +53,20 @@ class AgedBrieUpdater extends ItemUpdater {
         this.ensureQualityBounds(); // Ensure quality does not exceed bounds
     }
 }
+// Backstage passes updater (complex behavior based on sell_in)
+class BackstagePassUpdater extends ItemUpdater {
+    updateQuality() {
+        if (this.item.sell_in <= 0) {
+            this.item.quality = 0; // Quality drops to 0 after the concert
+        } else if (this.item.sell_in <= 5) {
+            this.item.quality += 3; // Increase by 3 when there are 5 or fewer days
+        } else if (this.item.sell_in <= 10) {
+            this.item.quality += 2; // Increase by 2 when there are 10 or fewer days
+        } else {
+            this.item.quality += 1; // Increase by 1 normally
+        }
+
+        this.item.sell_in -= 1; // Decrease sell_in
+        this.ensureQualityBounds(); // Ensure quality does not exceed bounds
+    }
+}
