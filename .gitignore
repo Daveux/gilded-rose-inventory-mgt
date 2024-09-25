@@ -131,3 +131,6 @@ dist
 
 # IDEA files
 .idea/
+
+#Package files
+package-lock.json

@@ -1,4 +1,5 @@
-const { expect } = require('chai');
+import { expect } from "chai";
+import { Item, createItemUpdater } from "../gilded_rose.js";
 
 describe('Gilded Rose', function() {
 // Test normal item quality and sell_in decrease

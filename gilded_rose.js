@@ -113,4 +113,9 @@ function update_quality() {
         const itemUpdater = createItemUpdater(item); // Get the correct item updater
         itemUpdater.updateQuality(); // Call the updater's updateQuality method
     });
+    console.log("These are the items", items)
 }
+
+update_quality();
+
+export {Item, update_quality, createItemUpdater};
